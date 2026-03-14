@@ -43,25 +43,6 @@ When someone wants to verify an image:
 - **Can't be faked**: TPM won't let anyone steal or copy the signing key
 - **Future-proof**: Unlike AI detection, this doesn't break as AI improves
 
-## Project Structure
-
-```
-veritas/
-├── webcam/          # Capture application (Electron)
-│   ├── index.html   # Camera UI
-│   ├── main.js      # Electron main process
-│   ├── preload.js   # Security bridge
-│   └── server/      # Image processing backend
-│
-├── verification/    # Verification application (Electron + React + TypeScript)
-│   ├── electron/    # Main process & preload
-│   ├── src/         # React UI
-│   ├── build/       # App icon
-│   └── certificates/ # Trusted device keys
-│
-└── README.md
-```
-
 ## Quick Start
 
 ### Capture App
@@ -99,71 +80,9 @@ npm run build
 
 **Verification App:**
 - Electron + React + TypeScript
-- Vite (build tool)
 - SHA-256 hashing
-- TPM integration (planned)
-- Rust verification backend (planned)
-
-## Current Status
-
-**Working:**
-- ✅ Webcam capture UI
-- ✅ Image preview and capture
-- ✅ Verification UI with drag-drop
-- ✅ Certificate/key management interface
-- ✅ Mock verification flow
-
-**To Implement:**
-- ⏳ SHA-256 hash generation from pixel data
-- ⏳ TPM integration for hardware signing
-- ⏳ Metadata embedding (EXIF/PNG chunks)
-- ⏳ Rust verification backend
-- ⏳ Actual signature verification
-- ⏳ Public key infrastructure
-
-## Use Cases
-
-- **News Media**: Prove photos are real, not AI-generated propaganda
-- **Legal Evidence**: Cryptographic proof of authenticity for court
-- **Social Media**: Users can verify which images came from real cameras
-- **Journalism**: Combat misinformation with verifiable imagery
-- **Content Platforms**: Filter out AI-generated content
-
-## Security Model
-
-**Assumptions:**
-- Private signing key is protected in TPM hardware
-- Images can only be signed during trusted capture
-- Modifying the image invalidates the signature
-
-**Attack Resistance:**
-- Copying metadata to another image won't work (signature is bound to pixel data)
-- Screenshots of verified images won't verify (new capture, no signature)
-- Editing a verified image breaks the hash and fails verification
-
-## Why Not Just Use AI Detection?
-
-AI detection tools are probabilistic and get worse as AI improves. Veritas provides mathematical certainty through cryptography. It's like the difference between "this signature looks fake" vs. "this signature is cryptographically invalid."
-
-## Future Improvements
-
-- Hardware camera attestation (prove the camera itself is trusted)
-- Certificate authority for device manufacturers
-- Blockchain timestamping for proof-of-capture time
-- Browser extension for inline verification
-- Mobile support (iOS/Android secure enclaves)
-- Social media platform integration
-- Batch verification tools
-
-## Development
-
-See individual app READMEs for detailed setup:
-- [Webcam Capture App](webcam/README.md) (coming soon)
-- [Verification App](verification/README.md)
-
-## Contributing
-
-This is a proof-of-concept demonstrating cryptographic alternatives to AI detection. Contributions welcome!
+- TPM integration
+- Rust verification backend
 
 ## License
 
