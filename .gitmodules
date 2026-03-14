@@ -1,0 +1,6 @@
+[submodule "webcam"]
+	path = webcam
+	url = https://github.com/yousefabukar/webcam.git
+[submodule "verification"]
+	path = verification
+	url = https://github.com/yousefabukar/verification.git
